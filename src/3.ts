@@ -2,7 +2,7 @@
  * Simulates the actions a HVAC unit can do
  * https://en.wikipedia.org/wiki/Heating,_ventilation,_and_air_conditioning
  */
-export enum TemperatureControl {
+export enum TemperatureAction {
   Idle,
   Heat,
   Cool,
@@ -24,7 +24,7 @@ export function getTemperatureAction(
   current: number,
   target: number,
   idleThreshold = DEFAULT_IDLE_THRESHOLD,
-): TemperatureControl {
+): TemperatureAction {
   // TODO: implement
-  return TemperatureControl.Idle;
+  return TemperatureAction.Idle;
 }
