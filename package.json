@@ -22,6 +22,7 @@
   "scripts": {
     "test": "mocha -r ts-node/register \"test/**/*.spec.ts\"",
     "test:1": "mocha -r ts-node/register \"test/1.spec.ts\"",
+    "test:2": "mocha -r ts-node/register \"test/2.spec.ts\"",
     "lint": "eslint src --ext ts",
     "lint:fix": "eslint src --fix --ext ts"
   }
