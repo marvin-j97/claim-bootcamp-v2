@@ -24,7 +24,7 @@ describe("Task 9", () => {
   });
 
   it("Should add 1 item", () => {
-    shoppingCart.addItem(product0, 1);
+    shoppingCart.addItems(product0, 1);
     expect(shoppingCart.getItems()).to.have.lengthOf(1);
     expect(shoppingCart.itemCount()).to.equal(1);
     expect(shoppingCart.getPrice()).to.equal(product0.getPrice());
@@ -32,7 +32,7 @@ describe("Task 9", () => {
   });
 
   it("Should add other items", () => {
-    shoppingCart.addItem(product1, 2);
+    shoppingCart.addItems(product1, 2);
     expect(shoppingCart.getItems()).to.have.lengthOf(2);
     expect(shoppingCart.itemCount()).to.equal(3);
     expect(shoppingCart.getPrice()).to.equal(product0.getPrice() + product1.getPrice() * 2);
@@ -51,21 +51,18 @@ describe("Task 9", () => {
   });
 
   it("Should add more amount to existing items", () => {
-    shoppingCart.addItem(product0, 1);
+    shoppingCart.addItems(product0, 1);
     expect(shoppingCart.getItems()).to.have.lengthOf(1);
     expect(shoppingCart.itemCount()).to.equal(2);
     expect(shoppingCart.getPrice()).to.equal(product0.getPrice() * 2);
-    expect(getNames(shoppingCart.getItems())).to.deep.equal([
-      product0.getName(),
-      product1.getName(),
-    ]);
+    expect(getNames(shoppingCart.getItems())).to.deep.equal([product0.getName()]);
   });
 
   it("Should add more items", () => {
-    shoppingCart.addItem(product1, 5);
+    shoppingCart.addItems(product1, 5);
     expect(shoppingCart.getItems()).to.have.lengthOf(2);
-    expect(shoppingCart.itemCount()).to.equal(6);
-    expect(shoppingCart.getPrice()).to.equal(product0.getPrice() + product1.getPrice() * 5);
+    expect(shoppingCart.itemCount()).to.equal(7);
+    expect(shoppingCart.getPrice()).to.equal(product0.getPrice() * 2 + product1.getPrice() * 5);
     expect(getNames(shoppingCart.getItems())).to.deep.equal([
       product0.getName(),
       product1.getName(),
@@ -74,7 +71,7 @@ describe("Task 9", () => {
 
   it("Should remove item and add other item", () => {
     shoppingCart.removeItem(product0.getId());
-    shoppingCart.addItem(product2, 2);
+    shoppingCart.addItems(product2, 2);
     expect(shoppingCart.getItems()).to.have.lengthOf(2);
     expect(shoppingCart.itemCount()).to.equal(7);
     expect(shoppingCart.getPrice()).to.equal(product1.getPrice() * 5 + product2.getPrice() * 2);
@@ -85,7 +82,7 @@ describe("Task 9", () => {
   });
 
   it("Should throw on non-existing error", () => {
-    expect(shoppingCart.removeItem(236)).to.throw(Error, "Item not found");
+    expect(() => shoppingCart.removeItem(236)).to.throw(Error, "Item not found");
     expect(shoppingCart.getItems()).to.have.lengthOf(2);
     expect(shoppingCart.itemCount()).to.equal(7);
   });

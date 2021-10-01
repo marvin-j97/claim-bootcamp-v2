@@ -34,12 +34,12 @@ export class ShoppingCart {
     this.items = [];
   }
 
-  addItem(product: Product, amount: number): void {
+  addItems(product: Product, amount: number): void {
     // TODO: implement
   }
 
   removeItem(id: number): void {
-    return;
+    // TODO: implement
   }
 
   clear(): void {
