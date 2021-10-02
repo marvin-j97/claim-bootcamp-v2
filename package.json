@@ -30,6 +30,7 @@
     "test:7": "mocha -r ts-node/register \"test/7.spec.ts\"",
     "test:8": "mocha -r ts-node/register \"test/8.spec.ts\"",
     "test:9": "mocha -r ts-node/register \"test/9.spec.ts\"",
+    "test:10": "mocha -r ts-node/register \"test/10.spec.ts\"",
     "lint": "eslint src --ext ts",
     "lint:fix": "eslint src --fix --ext ts"
   }
