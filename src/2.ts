@@ -10,22 +10,22 @@
  * Parametric ReLU
  */
 export function paraRelu(x: number, a = 0.01): number {
-  // TODO: implement
-  return -1;
+  if (x < 0) {
+    return a * x;
+  }
+  return x;
 }
 
 /**
  * ReLU
  */
 export function relu(x: number): number {
-  // TODO: implement using parametric ReLU
-  return -1;
+  return paraRelu(x, 0);
 }
 
 /**
  * Leaky ReLU
  */
 export function leakyRelu(x: number): number {
-  // TODO: implement using parametric ReLU
-  return -1;
+  return paraRelu(x, 0.01);
 }

@@ -49,7 +49,15 @@ export class ShoppingCart {
    * don't add new item entry, but increment amount instead
    */
   addItems(product: Product, amount: number): void {
-    // TODO: implement
+    const index = this.items.findIndex((x) => x.product.getId() === product.getId());
+    if (index < 0) {
+      this.items.push({
+        product,
+        amount,
+      });
+    } else {
+      this.items[index].amount += amount;
+    }
   }
 
   /**
@@ -58,30 +66,32 @@ export class ShoppingCart {
    * "Item not found" should be thrown
    */
   removeItem(id: number): void {
-    // TODO: implement
+    const index = this.items.findIndex((x) => x.product.getId() === id);
+    if (index < 0) {
+      throw new Error("Item not found");
+    }
+    this.items.splice(index, 1);
   }
 
   /**
    * Clears the shopping cart
    */
   clear(): void {
-    // TODO: implement
+    this.items = [];
   }
 
   /**
    * Sums up all item prices
    */
   getPrice(): number {
-    // TODO: implement
-    return -1;
+    return this.items.reduce((sum, x) => sum + x.product.getPrice() * x.amount, 0);
   }
 
   /**
    * Returns the amount of products in the cart
    */
   itemCount(): number {
-    // TODO: implement
-    return -1;
+    return this.items.reduce((count, x) => count + x.amount, 0);
   }
 
   getItems(): Array<IShoppingCartItem> {

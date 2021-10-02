@@ -4,16 +4,29 @@ export class InvertedIndex {
   private index: Record<string, Set<number>> = {};
 
   indexTokens(id: number, tokens: string[]): void {
-    // TODO: implement
+    for (const token of tokens) {
+      const set = this.index[token];
+      if (set) {
+        set.add(id);
+      } else {
+        this.index[token] = new Set([id]);
+      }
+    }
   }
 
   getDocumentIdsByToken(token: string): number[] {
-    // TODO: implement
+    const set = this.index[token];
+    if (set) {
+      return Array.from(set.values());
+    }
     return [];
   }
 
   removeDocument(id: number): void {
-    // TODO: implement
+    for (const token in this.index) {
+      const set = this.index[token];
+      set.delete(id);
+    }
   }
 }
 
@@ -24,22 +37,42 @@ export interface ISearchHit {
 
 export class SearchEngine {
   private tokenizer: Tokenizer;
-  // TODO: add more properties as needed
+  private index: InvertedIndex = new InvertedIndex();
 
   constructor(tokenizer: Tokenizer) {
     this.tokenizer = tokenizer;
   }
 
   indexDocument(id: number, text: string): void {
-    // TODO: implement
+    const tokens = this.tokenizer(text);
+    this.index.indexTokens(id, tokens);
   }
 
   removeDocument(id: number): void {
-    // TODO: implement
+    this.index.removeDocument(id);
   }
 
   retrieveDocuments(query: string): Array<ISearchHit> {
-    // TODO: implement
-    return [];
+    const hits: Record<number, number> = {};
+
+    const tokens = this.tokenizer(query);
+    for (const token of tokens) {
+      const retrievedIds = this.index.getDocumentIdsByToken(token);
+
+      for (const id of retrievedIds) {
+        if (id in hits) {
+          hits[id]++;
+        } else {
+          hits[id] = 1;
+        }
+      }
+    }
+
+    return Object.entries(hits)
+      .map(([key, value]) => ({
+        id: Number(key),
+        score: value,
+      }))
+      .sort((x, y) => y.score - x.score);
   }
 }

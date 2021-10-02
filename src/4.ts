@@ -4,6 +4,5 @@
  * https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
  */
 export function getMax(arr: number[]): number {
-  //  TODO: implement
-  return -1;
+  return arr.reduce((max, x) => Math.max(x, max));
 }

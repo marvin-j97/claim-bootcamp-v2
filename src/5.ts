@@ -5,6 +5,5 @@
  * https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/map
  */
 export function allNegatives(arr: number[]): number[] {
-  // TODO: implement
-  return [];
+  return arr.map((x) => x * -1);
 }
