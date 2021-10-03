@@ -15,6 +15,10 @@ export interface ITodo {
  * https://developer.mozilla.org/de/docs/Web/API/Fetch_API
  */
 export async function getTodo(id: number): Promise<ITodo> {
-  // TODO: implement
-  return undefined;
+  const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`);
+  if (response.ok) {
+    const data = (await response.json()) as ITodo;
+    return data;
+  }
+  throw new Error(`Request failed with status ${response.status}`);
 }
