@@ -5,7 +5,7 @@ export class InvertedIndex {
    * Inverted index data
    * Each token points to a set of document IDs
    */
-  private index: Record<string, Set<number>> = {};
+  private index: Map<string, Set<number>> = new Map();
 
   /**
    * Add document IDs for token to inverted index
