@@ -26,7 +26,7 @@ describe("Task 11", () => {
     let hadError = false;
     try {
       await getTodo(1000);
-    } catch (error) {
+    } catch (error: any) {
       hadError = true;
       expect(error.message).to.equal("Request failed with status 404");
     }
