@@ -21,11 +21,3 @@ export function relu(x: number): number {
   // TODO: implement using parametric ReLU
   return -1;
 }
-
-/**
- * Leaky ReLU
- */
-export function leakyRelu(x: number): number {
-  // TODO: implement using parametric ReLU
-  return -1;
-}
