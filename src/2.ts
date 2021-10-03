@@ -22,10 +22,3 @@ export function paraRelu(x: number, a = 0.01): number {
 export function relu(x: number): number {
   return paraRelu(x, 0);
 }
-
-/**
- * Leaky ReLU
- */
-export function leakyRelu(x: number): number {
-  return paraRelu(x, 0.01);
-}
